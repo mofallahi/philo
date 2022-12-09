@@ -35,3 +35,29 @@ unsigned long	ft_time()
 	return (x - x_0);
 }
 
+int	ft_right_data(int ac, char **av)
+{
+	while (--ac)
+		if (ft_atoi(av[ac]) <= 0)
+			return (1);
+	return (0);
+}
+
+void	ft_printf(t_philo *philo, char *str)
+{
+	pthread_mutex_lock(&philo->print);
+	if (philo->alive == 1)
+		printf("%ld : %d : %s",ft_time(), philo->id, str);
+	pthread_mutex_unlock(&philo->print);
+}
+
+int	create(t_philo *philo)
+{
+	int	i;
+
+	i = -1;
+	while (++i < philo[0].gp->nb_philo)
+		if (pthread_create(&philo[i].thread_id, NULL, &routine, &philo[i]))
+			return (0);
+	return (1);
+}
