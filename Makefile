@@ -1,7 +1,7 @@
 NAME = philo
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -pthread
-SRC = main.c ft_atoi.c
+SRC = main.c  utils.c
 OBJ = $(SRC:.c=.o)
 INC = philo.h
 
